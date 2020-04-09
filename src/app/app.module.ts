@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserSettingsFormComponent } from './user-settings-form/user-settings-form.component';
 
+import {ButtonsModule} from 'ngx-bootstrap/buttons'
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { RatingModule } from 'ngx-bootstrap/rating';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +19,9 @@ import { UserSettingsFormComponent } from './user-settings-form/user-settings-fo
   imports: [
     BrowserModule,
     FormsModule,
+    ButtonsModule,
+    RatingModule.forRoot(),
+    TimepickerModule.forRoot(),
     HttpClientModule,
     AppRoutingModule
   ],

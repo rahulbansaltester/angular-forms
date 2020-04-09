@@ -16,6 +16,10 @@ export class UserSettingsFormComponent implements OnInit {
   postError: boolean = false;
   postErrorMessage ='';
   subScriptionTypes : Observable<string[]>;
+  startTime: Date;
+  userRating: number = 0;
+  maxRating: number = 10;
+  isReadonly: boolean = false;
 
   originalUserSettings: UserSettings ={
     name: 'Milton',
@@ -26,10 +30,12 @@ export class UserSettingsFormComponent implements OnInit {
   }
 
   userSettings: UserSettings = {...this.originalUserSettings} 
+  singleModel ="On";
+  
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-
+    this.startTime = new Date();
     this.subScriptionTypes = this.dataService.getSubscriptionTypes()    
   }
 
@@ -40,14 +46,15 @@ export class UserSettingsFormComponent implements OnInit {
   }
 
    onSubmit( form: NgForm){
-    console.log('in onSubmit',form.valid);
-    if(form.valid){
-        this.dataService.postUserSettingsForm(this.userSettings).subscribe(result=> console.log('success',result),error=>this.onHttpError(error));
-    }
-    else{
-      this.postError =true;
-      this.postErrorMessage ="Please fix the above Errors";
-    }
+    console.log('in onSubmit',form.value);
+    // console.log('in onSubmit',form.valid);
+    // if(form.valid){
+    //     this.dataService.postUserSettingsForm(this.userSettings).subscribe(result=> console.log('success',result),error=>this.onHttpError(error));
+    // }
+    // else{
+    //   this.postError =true;
+    //   this.postErrorMessage ="Please fix the above Errors";
+    // }
   }
 
    onBlur(field : NgModel){
